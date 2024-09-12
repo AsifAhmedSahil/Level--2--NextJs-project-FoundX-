@@ -1,10 +1,13 @@
+/* eslint-disable import/order */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable prettier/prettier */
 import { Button } from "@nextui-org/button"
 import Link from "next/link"
-import Container from "../../UI/Container"
+
 import { getRecentsPosts } from "@/src/services/RecentsPosts"
-import Card from "../../UI/Card"
+import Container from "@/src/components/UI/Container"
+import Card from "@/src/components/UI/Card"
+
 
 
 const RecentPosts = async () => {
