@@ -19,11 +19,11 @@ export function middleware(request: NextRequest) {
 
     const {pathname} =request.nextUrl
 
-    // const user =undefined;
-    const user = {
-        name:"asif",
-        role:"USER"
-    }
+    const user =undefined;
+    // const user = {
+    //     name:"asif",
+    //     role:"USER"
+    // }
 
     if(!user){
         if(AuthRoutes.includes(pathname)){
