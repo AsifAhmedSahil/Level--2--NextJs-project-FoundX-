@@ -2,6 +2,8 @@
 /* eslint-disable react/jsx-sort-props */
 /* eslint-disable prettier/prettier */
 
+'use client'
+
 import FXForm from "@/src/components/form/FXForm"
 import FXInput from "@/src/components/form/FXInput"
 import { Button } from "@nextui-org/button"
@@ -14,6 +16,8 @@ const page = () => {
     console.log(data)
 
   }
+
+
   return (
     <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
       <h3 className="my-2 text-2xl font-bold">Login with FoundX</h3>
@@ -23,10 +27,10 @@ const page = () => {
          
         >
           <div className="py-3">
-            <Input name="email" label="Email" type="email" />
+            <FXInput name="email" label="Email" type="email" />
           </div>
           <div className="py-3">
-            <Input name="password" label="Password" type="password" />
+            <FXInput name="password" label="Password" type="password" />
           </div>
 
           <Button

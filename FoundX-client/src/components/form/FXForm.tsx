@@ -2,32 +2,27 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable prettier/prettier */
 
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
-// interface IProps {
-//   children:ReactNode
-// }
-
 interface formConfig {
-  defaultValues?:Record<string,any>
-  resolver?:any
+  defaultValues?: Record<string, any>;
+  resolver?: any;
 }
 
 interface IProps extends formConfig {
-  children:ReactNode,
-  onSubmit:SubmitHandler<any>
+  children: ReactNode;
+  onSubmit: SubmitHandler<any>;
 }
 
-const FXForm = ({ children, onSubmit,defaultValues,resolver }:IProps) => {
+const FXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
+  const formConfig: formConfig = {};
 
-  const formConfig :formConfig = {}
-
-  if(!!defaultValues){
-    formConfig["defaultValues"] = defaultValues
+  if (!!defaultValues) {
+    formConfig["defaultValues"] = defaultValues;
   }
-  if(!!resolver){
-    formConfig["resolver"] = resolver
+  if (!!resolver) {
+    formConfig["resolver"] = resolver;
   }
 
   const methods = useForm(formConfig);
