@@ -1,17 +1,25 @@
+/* eslint-disable padding-line-between-statements */
+/* eslint-disable react/jsx-sort-props */
 /* eslint-disable prettier/prettier */
 
+import FXForm from "@/src/components/form/FXForm"
+import FXInput from "@/src/components/form/FXInput"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import Link from "next/link"
 
 
 const page = () => {
+  const onSubmit = (data:any) =>{
+    console.log(data)
+
+  }
   return (
     <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
       <h3 className="my-2 text-2xl font-bold">Login with FoundX</h3>
       <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
       <div className="w-[35%]">
-        <form
+        <FXForm onSubmit={onSubmit}
          
         >
           <div className="py-3">
@@ -28,7 +36,7 @@ const page = () => {
           >
             Login
           </Button>
-        </form>
+        </FXForm>
         <div className="text-center">
           Don&lsquo;t have account ? <Link href={"/register"}>Register</Link>
         </div>
