@@ -12,6 +12,7 @@ import { registerUser } from "@/src/services/AuthService";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -19,6 +20,13 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 export default function RegisterPage() {
   // const { mutate: handleUserRegistration, isPending } = useUserRegistration();
 
+  const {mutate:handleUserRegistration,data,isError,isPending,isSuccess} = useMutation({
+    mutationKey: ['USER_REGISTRATION'],
+    mutationFn: async (userData) => await registerUser(userData)
+
+  })
+  
+  console.log({data,isError,isPending,isSuccess})
 
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -27,14 +35,15 @@ export default function RegisterPage() {
       profilePhoto:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     }
 
+    handleUserRegistration(userData)
+
+   
+  
     console.log(userData)
-    registerUser(userData)
+    
     
   };
 
-  // if (isPending) {
-  //   //  handle loading state
-  // }
 
   return (
     <div className="flex h-[calc(100vh-100px)] flex-col items-center justify-center">
