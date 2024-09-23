@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-sort-props */
-
+'use client'
 
 import { Input } from "@nextui-org/input";
 import { useFormContext } from "react-hook-form";
@@ -24,12 +24,15 @@ export default function FXInput({
 }: IProps) {
   const {
     register,
+    formState:{errors}
     
   } = useFormContext();
 
   return (
     <Input
       {...register(name)}
+      isInvalid={!!errors[name]}
+      errorMessage={errors[name] ? (errors[name].message as string) : ""}
    
       variant={variant}
       size={size}
