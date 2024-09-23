@@ -18,12 +18,27 @@ import loginValidationSchema from "@/src/schema/login.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import Loading from "@/src/components/UI/Loading";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 const LoginPage = () => {
-  const { mutate: handleUserLogin,isPending } = useUserLogin()
+  const searchParam = useSearchParams()
+  const redirect = searchParam.get("redirect")
+  const router = useRouter()
+  const { mutate: handleUserLogin,isPending,isSuccess } = useUserLogin()
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleUserLogin(data);
   };
+
+  useEffect(()=>{
+      if(!isPending && isSuccess){
+        if(redirect){
+          router.push(redirect)
+        }else{
+          router.push("/")
+        } 
+      }
+  },[isPending,isSuccess])
 
   return (
     <>
