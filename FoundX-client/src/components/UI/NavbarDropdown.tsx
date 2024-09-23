@@ -11,7 +11,7 @@ import { toast } from "sonner"
 
 const NavbarDropdown = () => {
     const router = useRouter()
-    const {setIsLoading} = useUser()
+    const {setIsLoading,user} = useUser()
 
     const handleLogout = () =>{
       logout()
@@ -25,7 +25,7 @@ const NavbarDropdown = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-      <Avatar name="asif"/>
+      <Avatar  src={user?.profilePhoto}/>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem onClick={() => handleNavigation("/profile")} >Profile</DropdownItem>
