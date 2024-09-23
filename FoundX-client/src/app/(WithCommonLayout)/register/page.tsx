@@ -6,9 +6,9 @@
 
 import FXForm from "@/src/components/form/FXForm";
 import FXInput from "@/src/components/form/FXInput";
+import { useUserRegistration } from "@/src/hooks/auth.hook";
 import registerValidationSchema from "@/src/schema/register.schema";
 import { registerUser } from "@/src/services/AuthService";
-
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
@@ -20,30 +20,21 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 export default function RegisterPage() {
   // const { mutate: handleUserRegistration, isPending } = useUserRegistration();
 
-  const {mutate:handleUserRegistration,data,isError,isPending,isSuccess} = useMutation({
-    mutationKey: ['USER_REGISTRATION'],
-    mutationFn: async (userData) => await registerUser(userData)
+  const { mutate:handleUserRegistration } = useUserRegistration()
 
-  })
-  
-  console.log({data,isError,isPending,isSuccess})
-
+  // console.log({ data, isError, isPending, isSuccess });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {
       ...data,
-      profilePhoto:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-    }
+      profilePhoto:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    };
 
-    handleUserRegistration(userData)
+    handleUserRegistration(userData);
 
-   
-  
-    console.log(userData)
-    
-    
+    console.log(userData);
   };
-
 
   return (
     <div className="flex h-[calc(100vh-100px)] flex-col items-center justify-center">
