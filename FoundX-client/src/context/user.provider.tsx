@@ -35,7 +35,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     handleUser();
-  }, []);
+  }, [isLoading]);
 
   return (
     <UserContext.Provider value={{ user, isLoading, setUser, setIsLoading }}>

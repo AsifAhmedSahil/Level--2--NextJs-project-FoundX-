@@ -20,14 +20,18 @@ import { useUserLogin } from "@/src/hooks/auth.hook";
 import Loading from "@/src/components/UI/Loading";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { useUser } from "@/src/context/user.provider";
 
 const LoginPage = () => {
   const searchParam = useSearchParams()
   const redirect = searchParam.get("redirect")
   const router = useRouter()
+  const {setIsLoading} = useUser()
   const { mutate: handleUserLogin,isPending,isSuccess } = useUserLogin()
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleUserLogin(data);
+    setIsLoading(true)
   };
 
   useEffect(()=>{
