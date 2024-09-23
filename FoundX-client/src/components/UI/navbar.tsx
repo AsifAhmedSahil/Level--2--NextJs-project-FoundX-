@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+'use client'
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -21,8 +23,10 @@ import { ThemeSwitch } from "@/src/components/UI/theme-switch";
 import { SearchIcon, Logo } from "@/src/components/icons";
 
 import NavbarDropdown from "./NavbarDropdown";
+import { useUser } from "@/src/context/user.provider";
 
 export const Navbar = () => {
+  const {user} = useUser()
   const searchInput = (
     <Input
       aria-label="Search"
@@ -78,9 +82,14 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden sm:flex gap-2">
+        {user?.email ? <NavbarItem className="hidden sm:flex gap-2">
           <NavbarDropdown/>
-        </NavbarItem>
+        </NavbarItem> : 
+        <NavbarItem className="hidden sm:flex gap-2">
+        <Link href="/login">Login</Link>
+      </NavbarItem>
+        
+        }
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
