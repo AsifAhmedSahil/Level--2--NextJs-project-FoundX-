@@ -12,16 +12,22 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import Link from "next/link";
 
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginValidationSchema from "@/src/schema/login.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useUserLogin } from "@/src/hooks/auth.hook";
+import Loading from "@/src/components/UI/Loading";
 
-const page = () => {
+const LoginPage = () => {
+  const { mutate: handleUserLogin,isPending } = useUserLogin()
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    handleUserLogin(data);
   };
 
   return (
+    <>
+    {isPending && <Loading/>}
     <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
       <h3 className="my-2 text-2xl font-bold">Login with FoundX</h3>
       <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
@@ -50,7 +56,8 @@ const page = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
-export default page;
+export default LoginPage;
