@@ -18,8 +18,14 @@ export default function CreatePostPage() {
   });
 
   const onSubmit : SubmitHandler<FieldValues>= (data) =>{
-    console.log(data)
+    
 
+    const postData = {
+      ...data,
+      questions: data.questions.map((ques : {value:string})=>ques.value)
+    }
+
+    console.log(postData)
   }
 
   const handleFieldAppend = () =>{
@@ -42,9 +48,10 @@ export default function CreatePostPage() {
 
           {
             fields.map((field,index)=>(
-              <div key={field.id} className="mb-3">
+              <div key={field.id} className="mb-3 flex items-center gap-2">
 
               <FXInput  name={`questions.${index}.value`} label="Question"/>
+              <Button onClick={() => remove(index)}>Remove</Button>
               </div>
             ))
           }
