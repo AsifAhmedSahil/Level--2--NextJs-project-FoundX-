@@ -86,7 +86,9 @@ export const Navbar = () => {
           <NavbarDropdown/>
         </NavbarItem> : 
         <NavbarItem className="hidden sm:flex gap-2">
-        <Link href="/login">Login</Link>
+        <Link href="/login">
+        <Button>Login</Button>
+        </Link>
       </NavbarItem>
         
         }
