@@ -9,6 +9,7 @@ import { FieldValues, FormProvider, SubmitHandler, useFieldArray, useForm } from
 
 import FXInput from "@/src/components/form/FXInput";
 import FXDatePicker from "@/src/components/form/FXDatePicker";
+import dateToISO from "@/src/utils/datToISO";
 
 export default function CreatePostPage() {
   const methods = useForm();
@@ -24,7 +25,8 @@ export default function CreatePostPage() {
 
     const postData = {
       ...data,
-      questions: data.questions.map((ques : {value:string})=>ques.value)
+      questions: data.questions.map((ques : {value:string})=>ques.value),
+      dateFound: dateToISO(data.dateFound)
     }
 
     console.log(postData)
