@@ -22,7 +22,7 @@ import { useGetCategries } from "@/src/hooks/category.hook";
 
 export default function CreatePostPage() {
 
-  const {data:categoriesData,isLoading:categoryLoading,isSuccess} = useGetCategries()
+  const {data:categoriesData,isLoading:categoryLoading,isSuccess:categorySuccess} = useGetCategries()
 
   let categoryOptions : { key:string , label:string }[] = []
 
@@ -90,7 +90,7 @@ export default function CreatePostPage() {
           <div className="flex flex-wrap gap-2 py-2">
             <div className="min-w-fit flex-1">
               <FXSelect
-                  // disabled={!categorySuccess}
+                  isDisabled={!categorySuccess}
                   label="Category"
                   name="category"
                   options={categoryOptions}

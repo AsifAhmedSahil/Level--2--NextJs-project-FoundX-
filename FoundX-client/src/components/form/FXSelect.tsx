@@ -12,7 +12,7 @@ interface IProps extends IInput {
     }[]
 }
 
-const FXSelect = ({options,name,label,variant="bordered"}:IProps) => {
+const FXSelect = ({options,name,label,variant="bordered",disabled}:IProps) => {
 
     const {register} = useFormContext()
 
@@ -22,6 +22,7 @@ const FXSelect = ({options,name,label,variant="bordered"}:IProps) => {
         className="min-w-full sm:min-w-[225px]"
         label={label} 
         variant={variant}
+        disabled={disabled}
       >
         {options.map((option) => (
           <SelectItem key={option.key}>
