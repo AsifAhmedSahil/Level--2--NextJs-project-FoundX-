@@ -1,3 +1,4 @@
+/* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 interface IDate {
@@ -12,7 +13,10 @@ interface IDate {
 } 
 
 const dateToISO = (date:IDate) =>{
-    return new Date(`${date.month}-${date.day}-${date.year}`).toISOString()
+    if(!date){
+        return new Date()
+    }
+    return new Date(`${date?.month}-${date?.day}-${date?.year}`).toISOString()
 }
 
 export default dateToISO

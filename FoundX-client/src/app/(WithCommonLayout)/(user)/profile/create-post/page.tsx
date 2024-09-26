@@ -10,6 +10,8 @@ import { FieldValues, FormProvider, SubmitHandler, useFieldArray, useForm } from
 import FXInput from "@/src/components/form/FXInput";
 import FXDatePicker from "@/src/components/form/FXDatePicker";
 import dateToISO from "@/src/utils/datToISO";
+import FXSelect from "@/src/components/form/FXSelect";
+import {allDistict} from "@bangladeshi/bangladesh-address"
 
 export default function CreatePostPage() {
   const methods = useForm();
@@ -36,6 +38,11 @@ export default function CreatePostPage() {
     append({ name:"questions" })
   }
 
+  const cityOptions = allDistict().sort().map((city:string)=>({
+    key:city,
+    label:city
+  }))
+
   return (
     <div className="h-full rounded-xl bg-gradient-to-b from-default-100 px-[73px] py-12">
         <h1 className="text-2xl font-semibold">Post a found item</h1>
@@ -55,7 +62,7 @@ export default function CreatePostPage() {
                 <FXInput label="Location" name="location" />
               </div>
               <div className="min-w-fit flex-1">
-                {/* <FXSelect label="City" name="city" options={cityOptions} /> */}
+                <FXSelect label="City" name="city" options={cityOptions} />
               </div>
             </div>
             <div className="flex flex-wrap gap-2 py-2">
