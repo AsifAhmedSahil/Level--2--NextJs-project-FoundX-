@@ -24,7 +24,7 @@ const RecentPosts = async () => {
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
         {posts.map((post:any) => (
         
-          <Card post={post} key={post._id}/>
+          <Card key={post._id} post={post}/>
         ))}
       </div>
       <div className="flex justify-center">

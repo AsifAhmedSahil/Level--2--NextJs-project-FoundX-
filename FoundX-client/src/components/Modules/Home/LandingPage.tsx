@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Input } from "@nextui-org/input"
+
 import { SearchIcon } from "../../icons"
 
 

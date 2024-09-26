@@ -18,10 +18,10 @@ const Sidebar = () => {
       <div className="rounded-xl bg-default-100 p-2">
         <div className="h-[330px] w-full rounded-md">
           <Image
-          height={100}
-          width={100}
-          src={user?.profilePhoto as string}
           alt="profile"
+          height={100}
+          src={user?.profilePhoto as string}
+          width={100}
           />
         </div>
         <div className="my-3">

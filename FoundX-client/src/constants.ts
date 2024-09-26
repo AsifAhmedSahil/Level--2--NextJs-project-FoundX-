@@ -1,3 +1,7 @@
 export const protectedRoute = [
-    '/login','/register','/profile',"/profile/:page*",'/admin'
-] 
+  "/login",
+  "/register",
+  "/profile",
+  "/profile/:page*",
+  "/admin",
+];

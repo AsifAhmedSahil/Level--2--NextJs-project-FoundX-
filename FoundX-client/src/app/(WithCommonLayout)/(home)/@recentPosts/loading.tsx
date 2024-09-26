@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable prettier/prettier */
-import Card from '@/src/components/UI/Card'
-import CardSkeleton from '@/src/components/UI/CardSkeleton'
-import Container from '@/src/components/UI/Container'
+
 import { Button } from '@nextui-org/button'
 import Link from 'next/link'
 import React from 'react'
+
+import Container from '@/src/components/UI/Container'
+import CardSkeleton from '@/src/components/UI/CardSkeleton'
 
 const loading = () => {
   return (

@@ -1,13 +1,14 @@
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable prettier/prettier */
 'use client'
-import { protectedRoute } from "@/src/constants"
-import { useUser } from "@/src/context/user.provider"
-import { logout } from "@/src/services/AuthService"
 import { Avatar } from "@nextui-org/avatar"
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/dropdown"
 import { usePathname, useRouter } from "next/navigation"
 import { toast } from "sonner"
+
+import { logout } from "@/src/services/AuthService"
+import { useUser } from "@/src/context/user.provider"
+import { protectedRoute } from "@/src/constants"
 
 
 const NavbarDropdown = () => {
@@ -39,7 +40,7 @@ const NavbarDropdown = () => {
         <DropdownItem onClick={() => handleNavigation("/profile")} >Profile</DropdownItem>
         <DropdownItem onClick={() => handleNavigation("/profile/settings")} >Setting</DropdownItem>
         <DropdownItem onClick={() => handleNavigation("/profile/create-post")} >Create Post</DropdownItem>
-        <DropdownItem onClick={() => handleLogout()} key="delete" className="text-danger" color="danger">
+        <DropdownItem key="delete" className="text-danger" color="danger" onClick={() => handleLogout()}>
           Log Out
         </DropdownItem>
       </DropdownMenu>

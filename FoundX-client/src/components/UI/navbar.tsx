@@ -18,11 +18,11 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 
+import NavbarDropdown from "./NavbarDropdown";
+
 import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/src/components/UI/theme-switch";
 import { SearchIcon, Logo } from "@/src/components/icons";
-
-import NavbarDropdown from "./NavbarDropdown";
 import { useUser } from "@/src/context/user.provider";
 
 export const Navbar = () => {
