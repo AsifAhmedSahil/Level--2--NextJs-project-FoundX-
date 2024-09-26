@@ -26,8 +26,10 @@ export default function CreatePostPage() {
 
   let categoryOptions : { key:string , label:string }[] = []
 
+  // console.log(categoriesData?.data.data,"*************data")
+
   if(categoriesData?.data && !categoryLoading){
-    categoryOptions = categoriesData.data.sort().map((category:{_id:string,name:string})=>({
+    categoryOptions = categoriesData?.data.data.sort().map((category:{_id:string,name:string})=>({
       key: category._id,
       label:category.name
     }))
