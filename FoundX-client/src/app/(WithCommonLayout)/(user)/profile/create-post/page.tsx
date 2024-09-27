@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-sort-props */
 /* eslint-disable prettier/prettier */
@@ -5,6 +6,7 @@
 
 import { Button } from "@nextui-org/button";
 import { Divider } from "@nextui-org/divider";
+
 import {
   FieldValues,
   FormProvider,
@@ -20,12 +22,19 @@ import FXSelect from "@/src/components/form/FXSelect";
 import { allDistict } from "@bangladeshi/bangladesh-address";
 import { useGetCategries } from "@/src/hooks/category.hook";
 import { ChangeEvent, useState } from "react";
+import FXTextarea from "@/src/components/form/FXTextArea";
+
+import { IoMdAdd  } from "react-icons/io";
+import { IoTrash } from "react-icons/io5";
+import { useUser } from "@/src/context/user.provider";
 
 export default function CreatePostPage() {
 
   const [imageFile,setImageFile] = useState<File[] | []>([])
   const [imagePreviews,setImagePreviews] = useState<string[] | []>([])
-  console.log(imageFile)
+  
+  const {user} = useUser()
+
 
   const {data:categoriesData,isLoading:categoryLoading,isSuccess:categorySuccess} = useGetCategries()
 
@@ -50,13 +59,22 @@ export default function CreatePostPage() {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const formData = new FormData()
     const postData = {
       ...data,
       questions: data.questions.map((ques: { value: string }) => ques.value),
       dateFound: dateToISO(data.dateFound),
+      user:user!._id
     };
 
-    console.log(postData);
+    formData.append("data",JSON.stringify(postData))
+
+    for(let image of imageFile){
+      formData.append("itemImages",image)
+    }
+
+    console.log(formData.get("data"))
+    console.log(formData.get("itemImages"))
   };
 
   const handleFieldAppend = () => {
@@ -154,7 +172,7 @@ export default function CreatePostPage() {
 
           <div className="flex flex-wrap-reverse gap-2 py-2">
             <div className="min-w-fit flex-1">
-              {/* <FXTextarea label="Description" name="description" /> */}
+              <FXTextarea label="Description" name="description" />
             </div>
           </div>
 
@@ -163,7 +181,7 @@ export default function CreatePostPage() {
           <div className="flex justify-between items-center mb-5">
             <h1 className="text-xl">Owner verification questions</h1>
             <Button isIconOnly onClick={() => handleFieldAppend()}>
-              {/* <AddIcon /> */}
+              <IoMdAdd className="size-7" />
             </Button>
           </div>
 
@@ -176,7 +194,7 @@ export default function CreatePostPage() {
                   className="h-14 w-16"
                   onClick={() => remove(index)}
                 >
-                  {/* <TrashIcon /> */}
+                  <IoTrash className="size-6" />
                 </Button>
               </div>
             ))}
