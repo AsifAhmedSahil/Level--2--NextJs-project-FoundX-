@@ -24,6 +24,7 @@ import { ChangeEvent, useState } from "react";
 export default function CreatePostPage() {
 
   const [imageFile,setImageFile] = useState<File[] | []>([])
+  const [imagePreviews,setImagePreviews] = useState<string[] | []>([])
   console.log(imageFile)
 
   const {data:categoriesData,isLoading:categoryLoading,isSuccess:categorySuccess} = useGetCategries()
@@ -74,6 +75,16 @@ export default function CreatePostPage() {
       const file = e.target.files![0]
 
       setImageFile((prev) => [...prev,file])
+
+      if(file){
+        const reader = new FileReader()
+
+        reader.onloadend = () =>{
+          setImagePreviews((prev) => [...prev,reader.result as string])
+        }
+
+        reader.readAsDataURL(file)
+      }
     }
 
   return (
@@ -124,7 +135,7 @@ export default function CreatePostPage() {
             </div>
           </div>
 
-          {/* {imagePreviews.length > 0 && (
+          {imagePreviews.length > 0 && (
               <div className="flex gap-5 my-5 flex-wrap">
                 {imagePreviews.map((imageDataUrl) => (
                   <div
@@ -139,7 +150,7 @@ export default function CreatePostPage() {
                   </div>
                 ))}
               </div>
-            )} */}
+            )}
 
           <div className="flex flex-wrap-reverse gap-2 py-2">
             <div className="min-w-fit flex-1">
