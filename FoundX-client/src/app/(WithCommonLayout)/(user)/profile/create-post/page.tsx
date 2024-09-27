@@ -19,8 +19,12 @@ import dateToISO from "@/src/utils/datToISO";
 import FXSelect from "@/src/components/form/FXSelect";
 import { allDistict } from "@bangladeshi/bangladesh-address";
 import { useGetCategries } from "@/src/hooks/category.hook";
+import { ChangeEvent, useState } from "react";
 
 export default function CreatePostPage() {
+
+  const [imageFile,setImageFile] = useState<File[] | []>([])
+  console.log(imageFile)
 
   const {data:categoriesData,isLoading:categoryLoading,isSuccess:categorySuccess} = useGetCategries()
 
@@ -65,6 +69,13 @@ export default function CreatePostPage() {
       label: city,
     }));
 
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) =>{
+      // console.log(e.target.files![0])
+      const file = e.target.files![0]
+
+      setImageFile((prev) => [...prev,file])
+    }
+
   return (
     <div className="h-full rounded-xl bg-gradient-to-b from-default-100 px-[73px] py-12">
       <h1 className="text-2xl font-semibold">Post a found item</h1>
@@ -90,7 +101,7 @@ export default function CreatePostPage() {
           <div className="flex flex-wrap gap-2 py-2">
             <div className="min-w-fit flex-1">
               <FXSelect
-                  isDisabled={!categorySuccess}
+                  disabled={!categorySuccess}
                   label="Category"
                   name="category"
                   options={categoryOptions}
@@ -108,7 +119,7 @@ export default function CreatePostPage() {
                 className="hidden"
                 id="image"
                 type="file"
-                // onChange={(e) => handleImageChange(e)}
+                onChange={(e) => handleImageChange(e)}
               />
             </div>
           </div>
