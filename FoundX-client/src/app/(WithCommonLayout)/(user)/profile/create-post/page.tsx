@@ -27,6 +27,7 @@ import FXTextarea from "@/src/components/form/FXTextArea";
 import { IoMdAdd  } from "react-icons/io";
 import { IoTrash } from "react-icons/io5";
 import { useUser } from "@/src/context/user.provider";
+import { useCreatePost } from "@/src/hooks/post.hook";
 
 export default function CreatePostPage() {
 
@@ -34,6 +35,8 @@ export default function CreatePostPage() {
   const [imagePreviews,setImagePreviews] = useState<string[] | []>([])
   
   const {user} = useUser()
+
+  const { mutate: handleCreatePost } = useCreatePost()
 
 
   const {data:categoriesData,isLoading:categoryLoading,isSuccess:categorySuccess} = useGetCategries()
@@ -73,8 +76,7 @@ export default function CreatePostPage() {
       formData.append("itemImages",image)
     }
 
-    console.log(formData.get("data"))
-    console.log(formData.get("itemImages"))
+    handleCreatePost(formData)
   };
 
   const handleFieldAppend = () => {
